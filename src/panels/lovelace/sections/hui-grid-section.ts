@@ -8,7 +8,7 @@ import { fireEvent } from "../../../common/dom/fire_event";
 import type { HaSortableOptions } from "../../../components/ha-sortable";
 import { LovelaceSectionElement } from "../../../data/lovelace";
 import { LovelaceCardConfig } from "../../../data/lovelace/config/card";
-import type { LovelaceSectionConfig } from "../../../data/lovelace/config/section";
+import type { LovelaceGridSectionConfig } from "../../../data/lovelace/config/section";
 import { haStyle } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
 import { HuiCard } from "../cards/hui-card";
@@ -61,6 +61,8 @@ export const computeSizeOnGrid = (
   };
 };
 
+const DEFAULT_COLUMNS = 4;
+
 export class GridSection extends LitElement implements LovelaceSectionElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -74,11 +76,11 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
 
   @property({ attribute: false }) public cards: HuiCard[] = [];
 
-  @state() _config?: LovelaceSectionConfig;
+  @state() _config?: LovelaceGridSectionConfig;
 
   @state() _dragging = false;
 
-  public setConfig(config: LovelaceSectionConfig): void {
+  public setConfig(config: LovelaceGridSectionConfig): void {
     this._config = config;
   }
 
@@ -97,6 +99,8 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
     const cardsConfig = this._config?.cards ?? [];
 
     const editMode = Boolean(this.lovelace?.editMode && !this.isStrategy);
+
+    const columnCount = this._config.columns ?? DEFAULT_COLUMNS;
 
     return html`
       ${this._config.title || this.lovelace?.editMode
@@ -125,7 +129,10 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
         .options=${CARD_SORTABLE_OPTIONS}
         invert-swap
       >
-        <div class="container ${classMap({ "edit-mode": editMode })}">
+        <div
+          class="container ${classMap({ "edit-mode": editMode })}"
+          style=${styleMap({ "--column-count": columnCount })}
+        >
           ${repeat(
             cardsConfig,
             (cardConfig) => this._getKey(cardConfig),
@@ -211,7 +218,6 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
       haStyle,
       css`
         :host {
-          --column-count: 4;
           --row-gap: var(--ha-section-grid-row-gap, 8px);
           --column-gap: var(--ha-section-grid-column-gap, 8px);
           --row-height: var(--ha-section-grid-row-height, 56px);
@@ -221,7 +227,7 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
         }
         .container {
           display: grid;
-          grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+          grid-template-columns: repeat(var(--column-count, 4), minmax(0, 1fr));
           grid-auto-rows: minmax(var(--row-height), auto);
           row-gap: var(--row-gap);
           column-gap: var(--column-gap);
