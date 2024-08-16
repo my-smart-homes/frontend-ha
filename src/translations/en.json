@@ -5650,7 +5650,7 @@
               "column_density_options": {
                 "default": "Default ({count} columns)",
                 "dense": "Dense ({count} columns)",
-                "custom": "Custom {count} ({count, plural,\n  one {column}\n  other {columns}\n})"
+                "custom": "Custom ({count} {count, plural,\n  one {column}\n  other {columns}\n})"
               }
             },
             "visibility": {
