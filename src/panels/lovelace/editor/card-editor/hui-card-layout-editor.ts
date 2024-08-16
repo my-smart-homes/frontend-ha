@@ -21,14 +21,21 @@ import { LovelaceCardConfig } from "../../../../data/lovelace/config/card";
 import { haStyle } from "../../../../resources/styles";
 import { HomeAssistant } from "../../../../types";
 import { HuiCard } from "../../cards/hui-card";
-import { computeSizeOnGrid } from "../../sections/hui-grid-section";
+import {
+  computeSizeOnGrid,
+  DEFAULT_COLUMN_BASE,
+} from "../../sections/hui-grid-section";
 import { LovelaceLayoutOptions } from "../../types";
+import { LovelaceGridSectionConfig } from "../../../../data/lovelace/config/section";
 
 @customElement("hui-card-layout-editor")
 export class HuiCardLayoutEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
   @property({ attribute: false }) public config!: LovelaceCardConfig;
+
+  @property({ attribute: false })
+  public sectionConfig!: LovelaceGridSectionConfig;
 
   @state() _defaultLayoutOptions?: LovelaceLayoutOptions;
 
@@ -135,6 +142,7 @@ export class HuiCardLayoutEditor extends LitElement {
               .rowMax=${options.grid_max_rows}
               .columnMin=${options.grid_min_columns}
               .columnMax=${options.grid_max_columns}
+              .columns=${this.sectionConfig.column_base || DEFAULT_COLUMN_BASE}
             ></ha-grid-size-picker>
           `}
     `;
