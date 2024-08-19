@@ -13,7 +13,7 @@ export interface LovelaceSectionConfig extends LovelaceBaseSectionConfig {
 }
 
 export interface LovelaceGridSectionConfig extends LovelaceSectionConfig {
-  column_base?: number;
+  grid_base?: number;
 }
 
 export interface LovelaceStrategySectionConfig

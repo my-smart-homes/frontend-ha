@@ -61,7 +61,7 @@ export const computeSizeOnGrid = (
   };
 };
 
-export const DEFAULT_COLUMN_BASE = 4;
+export const DEFAULT_GRID_BASE = 4;
 
 export class GridSection extends LitElement implements LovelaceSectionElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -100,7 +100,7 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
 
     const editMode = Boolean(this.lovelace?.editMode && !this.isStrategy);
 
-    const columnCount = this._config.column_base ?? DEFAULT_COLUMN_BASE;
+    const columnCount = this._config.grid_base ?? DEFAULT_GRID_BASE;
 
     return html`
       ${this._config.title || this.lovelace?.editMode

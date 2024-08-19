@@ -13,13 +13,13 @@ import {
   LovelaceSectionRawConfig,
 } from "../../../../data/lovelace/config/section";
 import { HomeAssistant } from "../../../../types";
-import { DEFAULT_COLUMN_BASE } from "../../sections/hui-grid-section";
+import { DEFAULT_GRID_BASE } from "../../sections/hui-grid-section";
 
-type ColumnDensity = "default" | "dense" | "custom";
+type GridDensity = "default" | "dense" | "custom";
 
 type SettingsData = {
   title: string;
-  column_density?: ColumnDensity;
+  grid_density?: GridDensity;
 };
 
 @customElement("hui-section-settings-editor")
@@ -32,7 +32,7 @@ export class HuiDialogEditSection extends LitElement {
     (
       localize: LocalizeFunc,
       type?: string | undefined,
-      columnDensity?: ColumnDensity,
+      columnDensity?: GridDensity,
       columnBase?: number
     ) =>
       [
@@ -43,7 +43,7 @@ export class HuiDialogEditSection extends LitElement {
         ...(type === "grid"
           ? ([
               {
-                name: "column_density",
+                name: "grid_density",
                 default: "default",
                 selector: {
                   select: {
@@ -51,14 +51,14 @@ export class HuiDialogEditSection extends LitElement {
                     options: [
                       {
                         label: localize(
-                          `ui.panel.lovelace.editor.edit_section.settings.column_density_options.default`,
+                          `ui.panel.lovelace.editor.edit_section.settings.grid_density_options.default`,
                           { count: 4 }
                         ),
                         value: "default",
                       },
                       {
                         label: localize(
-                          `ui.panel.lovelace.editor.edit_section.settings.column_density_options.dense`,
+                          `ui.panel.lovelace.editor.edit_section.settings.grid_density_options.dense`,
                           { count: 6 }
                         ),
                         value: "dense",
@@ -67,7 +67,7 @@ export class HuiDialogEditSection extends LitElement {
                         ? [
                             {
                               label: localize(
-                                `ui.panel.lovelace.editor.edit_section.settings.column_density_options.custom`,
+                                `ui.panel.lovelace.editor.edit_section.settings.grid_density_options.custom`,
                                 { count: columnBase }
                               ),
                               value: "custom",
@@ -90,16 +90,16 @@ export class HuiDialogEditSection extends LitElement {
   }
 
   render() {
-    const columnBase = this._isGridSectionConfig(this.config)
-      ? this.config.column_base || DEFAULT_COLUMN_BASE
+    const gridBase = this._isGridSectionConfig(this.config)
+      ? this.config.grid_base || DEFAULT_GRID_BASE
       : undefined;
 
     const columnDensity =
-      columnBase === 6 ? "dense" : columnBase === 4 ? "default" : "custom";
+      gridBase === 6 ? "dense" : gridBase === 4 ? "default" : "custom";
 
     const data: SettingsData = {
       title: this.config.title || "",
-      column_density: columnDensity,
+      grid_density: columnDensity,
     };
 
     const type = "type" in this.config ? this.config.type : undefined;
@@ -108,7 +108,7 @@ export class HuiDialogEditSection extends LitElement {
       this.hass.localize,
       type,
       columnDensity,
-      columnBase
+      gridBase
     );
 
     return html`
@@ -141,7 +141,7 @@ export class HuiDialogEditSection extends LitElement {
     ev.stopPropagation();
     const newData = ev.detail.value as SettingsData;
 
-    const { title, column_density } = newData;
+    const { title, grid_density } = newData;
 
     const newConfig: LovelaceSectionRawConfig = {
       ...this.config,
@@ -149,15 +149,15 @@ export class HuiDialogEditSection extends LitElement {
     };
 
     if (this._isGridSectionConfig(newConfig)) {
-      const column_base =
-        column_density === "default"
+      const gridBase =
+        grid_density === "default"
           ? 4
-          : column_density === "dense"
+          : grid_density === "dense"
             ? 6
             : undefined;
 
-      if (column_base) {
-        (newConfig as LovelaceGridSectionConfig).column_base = column_base;
+      if (gridBase) {
+        (newConfig as LovelaceGridSectionConfig).grid_base = gridBase;
       }
     }
 

@@ -23,7 +23,7 @@ import { HomeAssistant } from "../../../../types";
 import { HuiCard } from "../../cards/hui-card";
 import {
   computeSizeOnGrid,
-  DEFAULT_COLUMN_BASE,
+  DEFAULT_GRID_BASE,
 } from "../../sections/hui-grid-section";
 import { LovelaceLayoutOptions } from "../../types";
 import { LovelaceGridSectionConfig } from "../../../../data/lovelace/config/section";
@@ -142,7 +142,7 @@ export class HuiCardLayoutEditor extends LitElement {
               .rowMax=${options.grid_max_rows}
               .columnMin=${options.grid_min_columns}
               .columnMax=${options.grid_max_columns}
-              .columns=${this.sectionConfig.column_base || DEFAULT_COLUMN_BASE}
+              .columns=${this.sectionConfig.grid_base || DEFAULT_GRID_BASE}
             ></ha-grid-size-picker>
           `}
     `;
