@@ -37,27 +37,24 @@ type GridSizeValue = {
 export const computeSizeOnGrid = (
   options: LovelaceLayoutOptions
 ): GridSizeValue => {
-  const rows =
-    typeof options.grid_rows === "number"
-      ? conditionalClamp(
-          options.grid_rows,
-          options.grid_min_rows,
-          options.grid_max_rows
-        )
-      : DEFAULT_GRID_OPTIONS.grid_rows;
+  const rows = options.grid_rows ?? DEFAULT_GRID_OPTIONS.grid_rows;
+  const columns = options.grid_columns ?? DEFAULT_GRID_OPTIONS.grid_columns;
+  const minRows = options.grid_min_rows;
+  const maxRows = options.grid_max_rows;
+  const minColumns = options.grid_min_columns;
+  const maxColumns = options.grid_max_columns;
 
-  const columns =
-    typeof options.grid_columns === "number"
-      ? conditionalClamp(
-          options.grid_columns,
-          options.grid_min_columns,
-          options.grid_max_columns
-        )
-      : DEFAULT_GRID_OPTIONS.grid_columns;
+  const clampedRows =
+    typeof rows === "string" ? rows : conditionalClamp(rows, minRows, maxRows);
+
+  const clampedColumns =
+    typeof columns === "string"
+      ? columns
+      : conditionalClamp(columns, minColumns, maxColumns);
 
   return {
-    rows,
-    columns,
+    rows: clampedRows,
+    columns: clampedColumns,
   };
 };
 
@@ -141,7 +138,10 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
               card.layout = "grid";
               const layoutOptions = card.getLayoutOptions();
 
-              const { rows, columns } = computeSizeOnGrid(layoutOptions);
+              const { rows, columns } = computeSizeOnGrid(
+                layoutOptions,
+                columnCount
+              );
 
               return html`
                 <div
@@ -227,7 +227,7 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
         }
         .container {
           display: grid;
-          grid-template-columns: repeat(var(--column-count, 4), minmax(0, 1fr));
+          grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
           grid-auto-rows: minmax(var(--row-height), auto);
           row-gap: var(--row-gap);
           column-gap: var(--column-gap);
@@ -269,7 +269,7 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
           border-radius: var(--ha-card-border-radius, 12px);
           position: relative;
           grid-row: span var(--row-size);
-          grid-column: span var(--column-size);
+          grid-column: span min(var(--column-size), var(--column-count));
         }
 
         .card.fit-rows {
