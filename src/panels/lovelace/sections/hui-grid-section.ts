@@ -138,10 +138,7 @@ export class GridSection extends LitElement implements LovelaceSectionElement {
               card.layout = "grid";
               const layoutOptions = card.getLayoutOptions();
 
-              const { rows, columns } = computeSizeOnGrid(
-                layoutOptions,
-                columnCount
-              );
+              const { rows, columns } = computeSizeOnGrid(layoutOptions);
 
               return html`
                 <div
