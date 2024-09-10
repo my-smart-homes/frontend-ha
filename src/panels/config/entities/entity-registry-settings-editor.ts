@@ -1,6 +1,6 @@
 import "@material/mwc-button/mwc-button";
 import "@material/mwc-formfield/mwc-formfield";
-import { mdiContentCopy } from "@mdi/js";
+import { mdiCog, mdiContentCopy } from "@mdi/js";
 import { HassEntity } from "home-assistant-js-websocket";
 import {
   css,
@@ -31,13 +31,13 @@ import "../../../components/ha-area-picker";
 import "../../../components/ha-icon";
 import "../../../components/ha-icon-button-next";
 import "../../../components/ha-icon-picker";
+import "../../../components/ha-labels-picker";
 import "../../../components/ha-list-item";
 import "../../../components/ha-radio";
 import "../../../components/ha-select";
 import "../../../components/ha-settings-row";
 import "../../../components/ha-state-icon";
 import "../../../components/ha-switch";
-import "../../../components/ha-labels-picker";
 import type { HaSwitch } from "../../../components/ha-switch";
 import "../../../components/ha-textfield";
 import {
@@ -62,6 +62,7 @@ import {
   AlarmControlPanelEntityOptions,
   EntityRegistryEntry,
   EntityRegistryEntryUpdateParams,
+  EntityRegistryIcon,
   ExtEntityRegistryEntry,
   LockEntityOptions,
   SensorEntityOptions,
@@ -97,6 +98,7 @@ import { haStyle } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
 import { showToast } from "../../../util/toast";
 import { showDeviceRegistryDetailDialog } from "../devices/device-registry-detail/show-dialog-device-registry-detail";
+import { showEntityStateIconDialog } from "./dialogs/show-dialog-entity-state-icon";
 
 const OVERRIDE_DEVICE_CLASSES = {
   cover: [
@@ -155,7 +157,7 @@ export class EntityRegistrySettingsEditor extends LitElement {
 
   @state() private _name!: string;
 
-  @state() private _icon!: string;
+  @state() private _icon!: string | EntityRegistryIcon;
 
   @state() private _entityId!: string;
 
@@ -361,6 +363,41 @@ export class EntityRegistrySettingsEditor extends LitElement {
     }
   }
 
+  private _renderIconPicker(stateObj: HassEntity) {
+    const value = typeof this._icon === "object" ? "" : this._icon;
+    const placeholder =
+      this.entry.original_icon ||
+      (stateObj && until(entityIcon(this.hass, stateObj))) ||
+      until(entryIcon(this.hass, this.entry));
+
+    return html`
+      <div class="icon-container">
+        <ha-icon-picker
+          .hass=${this.hass}
+          .value=${value}
+          @value-changed=${this._iconChanged}
+          .label=${this.hass.localize("ui.dialogs.entity_registry.editor.icon")}
+          .placeholder=${placeholder}
+          .disabled=${this.disabled}
+        >
+          ${!this._icon && !stateObj?.attributes.icon && stateObj
+            ? html`
+                <ha-state-icon
+                  slot="fallback"
+                  .hass=${this.hass}
+                  .stateObj=${stateObj}
+                ></ha-state-icon>
+              `
+            : nothing}
+        </ha-icon-picker>
+        <ha-icon-button
+          .path=${mdiCog}
+          @click=${this._openEntityStateIcon}
+        ></ha-icon-button>
+      </div>
+    `;
+  }
+
   protected render() {
     if (this.entry.entity_id !== this._origEntityId) {
       return nothing;
@@ -392,33 +429,7 @@ export class EntityRegistrySettingsEditor extends LitElement {
             .placeholder=${this.entry.original_name}
             @input=${this._nameChanged}
           ></ha-textfield>`}
-      ${this.hideIcon
-        ? nothing
-        : html`
-            <ha-icon-picker
-              .hass=${this.hass}
-              .value=${this._icon}
-              @value-changed=${this._iconChanged}
-              .label=${this.hass.localize(
-                "ui.dialogs.entity_registry.editor.icon"
-              )}
-              .placeholder=${this.entry.original_icon ||
-              stateObj?.attributes.icon ||
-              (stateObj && until(entityIcon(this.hass, stateObj))) ||
-              until(entryIcon(this.hass, this.entry))}
-              .disabled=${this.disabled}
-            >
-              ${!this._icon && !stateObj?.attributes.icon && stateObj
-                ? html`
-                    <ha-state-icon
-                      slot="fallback"
-                      .hass=${this.hass}
-                      .stateObj=${stateObj}
-                    ></ha-state-icon>
-                  `
-                : nothing}
-            </ha-icon-picker>
-          `}
+      ${this.hideIcon ? nothing : this._renderIconPicker(stateObj)}
       ${domain === "switch"
         ? html`<ha-select
             .label=${this.hass.localize(
@@ -1037,7 +1048,8 @@ export class EntityRegistrySettingsEditor extends LitElement {
 
     const params: Partial<EntityRegistryEntryUpdateParams> = {
       name: this._name.trim() || null,
-      icon: this._icon.trim() || null,
+      icon:
+        typeof this._icon === "string" ? this._icon.trim() : this._icon || null,
       area_id: this._areaId || null,
       labels: this._labels || [],
       new_entity_id: this._entityId.trim(),
@@ -1454,6 +1466,17 @@ export class EntityRegistrySettingsEditor extends LitElement {
     });
   }
 
+  private _openEntityStateIcon() {
+    showEntityStateIconDialog(this, {
+      entry: this.entry!,
+      icon: this._icon,
+      updateIcon: async (icon) => {
+        this._icon = icon || "";
+        fireEvent(this, "change");
+      },
+    });
+  }
+
   private _handleVoiceAssistantsClicked() {
     showVoiceAssistantsView(
       this,
@@ -1547,6 +1570,18 @@ export class EntityRegistrySettingsEditor extends LitElement {
           margin-bottom: 3px;
           overflow: hidden;
           --mdc-list-side-padding: 13px;
+        }
+        .icon-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+        }
+        .icon-container ha-button-icon {
+          flex: none;
+        }
+        .icon-container ha-icon-picker {
+          flex: 1;
         }
       `,
     ];

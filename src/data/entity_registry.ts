@@ -13,10 +13,15 @@ export { subscribeEntityRegistryDisplay } from "./ws-entity_registry_display";
 
 type EntityCategory = "config" | "diagnostic";
 
+export type EntityRegistryIcon = {
+  default: string;
+  state?: Record<string, string>;
+};
+
 export interface EntityRegistryDisplayEntry {
   entity_id: string;
   name?: string;
-  icon?: string;
+  icon?: EntityRegistryIcon | string;
   device_id?: string;
   area_id?: string;
   labels: string[];
@@ -48,7 +53,7 @@ export interface EntityRegistryEntry extends RegistryEntry {
   id: string;
   entity_id: string;
   name: string | null;
-  icon: string | null;
+  icon: EntityRegistryIcon | string | null;
   platform: string;
   config_entry_id: string | null;
   device_id: string | null;
@@ -129,7 +134,7 @@ export interface EntityRegistryOptions {
 
 export interface EntityRegistryEntryUpdateParams {
   name?: string | null;
-  icon?: string | null;
+  icon?: string | EntityRegistryIcon | null;
   device_class?: string | null;
   area_id?: string | null;
   disabled_by?: string | null;
