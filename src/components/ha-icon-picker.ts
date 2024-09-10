@@ -95,6 +95,9 @@ export class HaIconPicker extends LitElement {
 
   @property({ type: Boolean }) public invalid = false;
 
+  @property({ type: Boolean, attribute: "force-fallback-icon" })
+  public forceFallbackIcon = false;
+
   protected render(): TemplateResult {
     return html`
       <ha-combo-box
@@ -116,7 +119,7 @@ export class HaIconPicker extends LitElement {
         @opened-changed=${this._openedChanged}
         @value-changed=${this._valueChanged}
       >
-        ${this._value || this.placeholder
+        ${(this._value || this.placeholder) && !this.forceFallbackIcon
           ? html`
               <ha-icon .icon=${this._value || this.placeholder} slot="icon">
               </ha-icon>
