@@ -71,7 +71,7 @@ jobs:
           # Sleep to give pypi time to populate the new version across mirrors
           sleep 240
           version=$(echo "${{ github.ref }}" | awk -F"/" '{print $NF}' )
-          echo "home-assistant-frontend==$version" > ./requirements.txt
+          echo "my-home-assistant-frontend==$version" > ./requirements.txt
 
       - name: Build wheels
         uses: home-assistant/wheels@2024.07.1
