@@ -36,10 +36,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Download translations
-        run: ./script/translations_download
-        env:
-          LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
+      # - name: Download translations
+      #   run: ./script/translations_download
+      #   env:
+      #     LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
       - name: Bump version
         run: script/version_bump.js nightly
@@ -50,7 +50,7 @@ jobs:
           yarn install
           export SKIP_FETCH_NIGHTLY_TRANSLATIONS=1
           script/build_frontend
-          rm -rf dist home_assistant_frontend.egg-info
+          rm -rf dist my_smart_homes_frontend.egg-info
           python3 -m build
 
       - name: Archive translations
@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v4.4.0
         with:
           name: wheels
-          path: dist/home_assistant_frontend*.whl
+          path: dist/my_smart_homes_frontend*.whl
           if-no-files-found: error
 
       - name: Upload translations
