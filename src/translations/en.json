@@ -445,8 +445,8 @@
         "triggered_by_event": "triggered by event",
         "triggered_by_time": "triggered by time",
         "triggered_by_time_pattern": "triggered by time pattern",
-        "triggered_by_homeassistant_stopping": "triggered by Home Assistant stopping",
-        "triggered_by_homeassistant_starting": "triggered by Home Assistant starting",
+        "triggered_by_homeassistant_stopping": "triggered by MySmartHomes stopping",
+        "triggered_by_homeassistant_starting": "triggered by MySmartHomes starting",
         "show_trace": "[%key:ui::panel::config::automation::editor::show_trace%]",
         "retrieval_error": "Could not load logbook",
         "not_loaded": "[%key:ui::dialogs::helper_settings::platform_not_loaded%]",
@@ -1043,7 +1043,7 @@
     "dialogs": {
       "safe_mode": {
         "title": "Safe mode",
-        "text": "Home Assistant is running in safe mode, custom integrations and frontend modules are not available. Restart Home Assistant to exit safe mode."
+        "text": "MySmartHomes is running in safe mode, custom integrations and frontend modules are not available. Restart MySmartHomes to exit safe mode."
       },
       "quick-bar": {
         "commands": {
@@ -1133,7 +1133,7 @@
       },
       "voice_command": {
         "title": "Assist",
-        "did_not_hear": "Home Assistant did not hear anything",
+        "did_not_hear": "MySmartHomes did not hear anything",
         "did_not_understand": "Didn't quite get that",
         "found": "I found the following for you:",
         "error": "Oops, an error has occurred",
@@ -1143,8 +1143,8 @@
         "send_text": "Send text",
         "start_listening": "Start listening",
         "manage_assistants": "Manage assistants",
-        "not_supported_microphone_browser": "Your connection to Home Assistant is not secured using HTTPS. This causes browsers to block Home Assistant from accessing the microphone.",
-        "not_supported_microphone_documentation": "Use the Home Assistant app or visit {documentation_link} to learn how to use a secure URL",
+        "not_supported_microphone_browser": "Your connection to MySmartHomes is not secured using HTTPS. This causes browsers to block MySmartHomes from accessing the microphone.",
+        "not_supported_microphone_documentation": "Use the MySmartHomes app or visit {documentation_link} to learn how to use a secure URL",
         "not_supported_microphone_documentation_link": "the documentation"
       },
       "generic": {
@@ -1193,7 +1193,7 @@
           "install": "Install",
           "create_backup": "Create backup before updating",
           "auto_update_enabled_title": "Can not skip version",
-          "auto_update_enabled_text": "Automatic updates for this item have been enabled; skipping it is, therefore, unavailable. You can either install this update now or wait for Home Assistant to do it automatically."
+          "auto_update_enabled_text": "Automatic updates for this item have been enabled; skipping it is, therefore, unavailable. You can either install this update now or wait for MySmartHomes to do it automatically."
         },
         "updater": {
           "title": "Update instructions"
@@ -1372,9 +1372,9 @@
           "switch_as_x_confirm": "This switch will be hidden and a new {domain} will be added. Your existing configurations using the switch will continue to work.",
           "switch_as_x_remove_confirm": "This {domain} will be removed and the original switch will be visible again. Your existing configurations using the {domain} will no longer work!",
           "switch_as_x_change_confirm": "This {domain_1} will be removed and will be replaced by a new {domain_2}. Your existing configurations using the {domain_1} will no longer work!",
-          "enabled_description": "Disabled entities will not be added to Home Assistant.",
-          "enabled_delay_confirm": "The enabled entities will be added to Home Assistant in {delay} seconds",
-          "enabled_restart_confirm": "Restart Home Assistant to finish enabling the entities",
+          "enabled_description": "Disabled entities will not be added to MySmartHomes.",
+          "enabled_delay_confirm": "The enabled entities will be added to MySmartHomes in {delay} seconds",
+          "enabled_restart_confirm": "Restart MySmartHomes to finish enabling the entities",
           "hidden_explanation": "Hidden entities will not be shown on your dashboard or included when indirectly referenced (ie via an area or device). Their history is still tracked and you can still interact with them with actions.",
           "delete": "Delete",
           "confirm_delete": "Are you sure you want to delete this entity?",
@@ -1428,7 +1428,7 @@
         "view_entity": "More info about entity"
       },
       "restart": {
-        "heading": "Restart Home Assistant",
+        "heading": "Restart MySmartHomes",
         "advanced_options": "Advanced options",
         "reload": {
           "title": "Quick reload",
@@ -1437,43 +1437,43 @@
           "failed": "Failed to reload configuration"
         },
         "restart": {
-          "title": "Restart Home Assistant",
+          "title": "Restart MySmartHomes",
           "description": "Interrupts all running automations and scripts.",
-          "confirm_title": "Restart Home Assistant?",
+          "confirm_title": "Restart MySmartHomes?",
           "confirm_description": "This will interrupt all running automations and scripts.",
           "confirm_action": "Restart",
-          "failed": "Failed to restart Home Assistant"
+          "failed": "Failed to restart MySmartHomes"
         },
         "stop": {
-          "confirm_title": "Stop Home Assistant?",
+          "confirm_title": "Stop MySmartHomest?",
           "confirm_description": "This will interrupt all running automations and scripts.",
           "confirm_action": "Stop"
         },
         "reboot": {
           "title": "Reboot system",
-          "description": "Restarts the system running Home Assistant and all add-ons.",
+          "description": "Restarts the system running MySmartHomes and all add-ons.",
           "confirm_title": "Reboot system?",
-          "confirm_description": "This will reboot the complete system which includes Home Assistant and all the add-ons.",
+          "confirm_description": "This will reboot the complete system which includes MySmartHomes and all the add-ons.",
           "confirm_action": "Reboot",
           "rebooting": "Rebooting system",
           "failed": "Failed to reboot system"
         },
         "shutdown": {
           "title": "Shut down system",
-          "description": "Shuts down the system running Home Assistant and all add-ons.",
+          "description": "Shuts down the system running MySmartHomes and all add-ons.",
           "confirm_title": "Shut down system?",
-          "confirm_description": "This will shut down the complete system which includes Home Assistant and all add-ons.",
+          "confirm_description": "This will shut down the complete system which includes MySmartHomes and all add-ons.",
           "confirm_action": "Shut down",
           "shutting_down": "Shutting down system",
           "failed": "Failed to shut down system"
         },
         "restart-safe-mode": {
-          "title": "Restart Home Assistant in safe mode",
-          "description": "Restarts Home Assistant without loading any custom integrations and frontend modules.",
-          "confirm_title": "Restart Home Assistant in safe mode?",
-          "confirm_description": "This will restart Home Assistant without loading any custom integrations and frontend modules.",
+          "title": "Restart MySmartHomes in safe mode",
+          "description": "RestartsMySmartHomes without loading any custom integrations and frontend modules.",
+          "confirm_title": "Restart MySmartHomes in safe mode?",
+          "confirm_description": "This will restart MySmartHomes without loading any custom integrations and frontend modules.",
           "confirm_action": "Restart",
-          "failed": "Failed to restart Home Assistant"
+          "failed": "Failed to restart MySmartHomes"
         }
       },
       "aliases": {
@@ -1533,7 +1533,7 @@
           "minimum": "Minimum value",
           "maximum": "Maximum value",
           "initial": "Initial value",
-          "restore": "Restore the last known value when Home Assistant starts",
+          "restore": "Restore the last known value when MySmartHomes starts",
           "step": "Step size"
         },
         "timer": {
@@ -1585,8 +1585,8 @@
         "enable_new_entities_label": "Enable newly added entities.",
         "enable_new_entities_description": "If newly discovered devices for {integration} should be automatically added.",
         "enable_polling_label": "Enable polling for updates.",
-        "enable_polling_description": "If Home Assistant should automatically poll {integration} entities for updates.",
-        "restart_home_assistant": "You need to restart Home Assistant for your changes to take effect.",
+        "enable_polling_description": "If MySmartHomes should automatically poll {integration} entities for updates.",
+        "restart_home_assistant": "You need to restart MySmartHomes for your changes to take effect.",
         "update": "Update"
       },
       "zha_reconfigure_device": {
@@ -1739,7 +1739,7 @@
         },
         "new": {
           "header": "[%key:ui::dialogs::matter-add-device::main::header%]",
-          "note": "You need to use the Home Assistant Companion app on your mobile phone to add Matter devices.",
+          "note": "You need to use the MySmartHomes Companion app on your mobile phone to add Matter devices.",
           "download_app": "Install it from the Google Play Store or the App Store if you don't have it.",
           "playstore": "[%key:ui::panel::page-onboarding::welcome::playstore%]",
           "appstore": "[%key:ui::panel::page-onboarding::welcome::appstore%]"
@@ -1758,8 +1758,8 @@
           "step_3": "Tap {link_apps_services} and choose {home_assistant} from the list.",
           "linked_matter_apps_services": "Linked Matter apps and services",
           "link_apps_services": "Link apps & services",
-          "no_home_assistant": "I can't find Home Assistant on the list",
-          "redirect": "You are redirected to the Home Assistant app. Please follow the instructions."
+          "no_home_assistant": "I can't find MySmartHomes on the list",
+          "redirect": "You are redirected to the MySmartHomes app. Please follow the instructions."
         },
         "google_home_fallback": {
           "header": "Copy pairing code",
@@ -1837,8 +1837,8 @@
     "notification_toast": {
       "action_failed": "Failed to perform the action {service}.",
       "connection_lost": "Connection lost. Reconnecting…",
-      "started": "Home Assistant has started!",
-      "starting": "Home Assistant is starting, not everything will be available until it is finished.",
+      "started": "MySmartHomes has started!",
+      "starting": "MySmartHomes is starting, not everything will be available until it is finished.",
       "wrapping_up_startup": "Wrapping up startup, not everything will be available until it is finished.",
       "integration_starting": "Starting {integration}, not everything will be available until it is finished.",
       "triggered": "Triggered {name}",
@@ -1854,14 +1854,14 @@
     },
     "panel": {
       "my": {
-        "not_supported": "This redirect is not supported by your Home Assistant instance. Check the {link} for the supported redirects and the version they where introduced.",
-        "component_not_loaded": "This redirect is not supported by your Home Assistant instance. You need the integration {integration} to use this redirect.",
-        "no_supervisor": "This redirect is not supported by your Home Assistant installation. It needs either the Home Assistant Operating System or Home Assistant Supervised installation method. For more information, see the {docs_link}.",
-        "not_app": "This redirect only works from a mobile device that has the Home Assistant Companion app installed. {link}.",
+        "not_supported": "This redirect is not supported by your MySmartHomes instance. Check the {link} for the supported redirects and the version they where introduced.",
+        "component_not_loaded": "This redirect is not supported by your MySmartHomes instance. You need the integration {integration} to use this redirect.",
+        "no_supervisor": "This redirect is not supported by your MySmartHomes installation. It needs either the MySmartHomes Operating System or Home Assistant Supervised installation method. For more information, see the {docs_link}.",
+        "not_app": "This redirect only works from a mobile device that has the MySmartHomes Companion app installed. {link}.",
         "url_error": "The provided URL is invalid.",
         "documentation": "documentation",
         "download_app": "Click here to download the app",
-        "faq_link": "My Home Assistant FAQ",
+        "faq_link": "MySmartHomes FAQ",
         "error": "An unknown error occurred"
       },
       "config": {
@@ -1872,7 +1872,7 @@
             "actions": "Actions"
           }
         },
-        "header": "Configure Home Assistant",
+        "header": "Configure MySmartHomes",
         "dashboard": {
           "devices": {
             "main": "Devices & services",
@@ -1884,11 +1884,11 @@
           },
           "backup": {
             "main": "Backup",
-            "secondary": "Generate backups of your Home Assistant configuration"
+            "secondary": "Generate backups of your MySmartHomes configuration"
           },
           "supervisor": {
             "main": "Add-ons",
-            "secondary": "Run extra applications next to Home Assistant"
+            "secondary": "Run extra applications next to MySmartHomes"
           },
           "dashboards": {
             "main": "Dashboards",
@@ -1941,7 +1941,7 @@
         },
         "updates": {
           "caption": "Updates",
-          "description": "Manage updates of Home Assistant, add-ons, and devices",
+          "description": "Manage updates of MySmartHomes, add-ons, and devices",
           "no_updates": "No updates available",
           "no_update_entities": {
             "title": "Unable to check for updates",
@@ -1963,7 +1963,7 @@
         },
         "repairs": {
           "caption": "Repairs",
-          "description": "Find and fix issues with your Home Assistant instance",
+          "description": "Find and fix issues with your MySmartHomes instance",
           "title": "{count} {count, plural,\n  one {repair}\n  other {repairs}\n}",
           "no_repairs": "There are currently no repairs available",
           "more_repairs": "Show all repairs",
@@ -2072,7 +2072,7 @@
           },
           "picker": {
             "header": "Areas",
-            "introduction": "Areas are used to organize where devices are. This information will be used throughout Home Assistant to help you in organizing your interface, permissions, and integrations with other systems.",
+            "introduction": "Areas are used to organize where devices are. This information will be used throughout MySmartHomes to help you in organizing your interface, permissions, and integrations with other systems.",
             "introduction2": "To place devices in an area, use the link below to navigate to the integrations page and then click on a configured integration to get to the device cards.",
             "integrations_page": "Integrations page",
             "no_areas": "Looks like you have no areas yet!",
@@ -2111,7 +2111,7 @@
         "backup": {
           "caption": "Backups",
           "description": "Last backup {relative_time}",
-          "description_no_backup": "Manage backups and restore Home Assistant to a previous state",
+          "description_no_backup": "Manage backups and restore MySmartHomes to a previous state",
           "create_backup": "[%key:supervisor::backup::create_backup%]",
           "creating_backup": "Backup is currently being created",
           "download_backup": "[%key:supervisor::backup::download_backup%]",
@@ -2178,7 +2178,7 @@
           "delete_integration": "Are you sure you want to delete this integration? It will remove the entities it provides",
           "grid": {
             "title": "Electricity grid",
-            "sub": "Configure the amount of energy that you consume from the grid and, if you produce energy, give back to the grid. This allows Home Assistant to track your whole home energy usage.",
+            "sub": "Configure the amount of energy that you consume from the grid and, if you produce energy, give back to the grid. This allows MySmartHomes to track your whole home energy usage.",
             "learn_more": "More information on how to get started.",
             "grid_consumption": "Grid consumption",
             "edit_consumption": "Edit consumption",
@@ -2197,7 +2197,7 @@
                 "paragraph": "Grid consumption is the energy that flows from the energy grid to your home.",
                 "entity_para": "Pick a sensor which measures grid consumption in either of {unit}.",
                 "energy_stat": "Consumed energy",
-                "cost_para": "Select how Home Assistant should keep track of the costs of the consumed energy.",
+                "cost_para": "Select how MySmartHomes should keep track of the costs of the consumed energy.",
                 "no_cost": "Do not track costs",
                 "cost_stat": "Use an entity tracking the total costs",
                 "cost_stat_input": "Entity with the total costs",
