@@ -14,7 +14,6 @@ import {
   mdiMapMarkerRadius,
   mdiMathLog,
   mdiMemory,
-  mdiMicrophone,
   mdiNetwork,
   mdiNfcVariant,
   mdiPalette,
@@ -92,12 +91,12 @@ export const configSections: { [name: string]: PageNavigation[] } = {
       iconColor: "#B1345C",
       component: "lovelace",
     },
-    {
-      path: "/config/voice-assistants",
-      translationKey: "voice_assistants",
-      iconPath: mdiMicrophone,
-      iconColor: "#3263C3",
-    },
+    // {
+    //   path: "/config/voice-assistants",
+    //   translationKey: "voice_assistants",
+    //   iconPath: mdiMicrophone,
+    //   iconColor: "#3263C3",
+    // },
     {
       path: "/config/tags",
       translationKey: "tags",
@@ -215,14 +214,14 @@ export const configSections: { [name: string]: PageNavigation[] } = {
       iconColor: "#616161",
     },
   ],
-  voice_assistants: [
-    {
-      path: "/config/voice-assistants",
-      translationKey: "ui.panel.config.dashboard.voice_assistants.main",
-      iconPath: mdiMicrophone,
-      iconColor: "#3263C3",
-    },
-  ],
+  // voice_assistants: [
+  //   {
+  //     path: "/config/voice-assistants",
+  //     translationKey: "ui.panel.config.dashboard.voice_assistants.main",
+  //     iconPath: mdiMicrophone,
+  //     iconColor: "#3263C3",
+  //   },
+  // ],
   // Not used as a tab, but this way it will stay in the quick bar
   energy: [
     {
@@ -407,10 +406,10 @@ class HaPanelConfig extends SubscribeMixin(HassRouterPage) {
         tag: "ha-config-areas",
         load: () => import("./areas/ha-config-areas"),
       },
-      "voice-assistants": {
-        tag: "ha-config-voice-assistants",
-        load: () => import("./voice-assistants/ha-config-voice-assistants"),
-      },
+      // "voice-assistants": {
+      //   tag: "ha-config-voice-assistants",
+      //   load: () => import("./voice-assistants/ha-config-voice-assistants"),
+      // },
       automation: {
         tag: "ha-config-automation",
         load: () => import("./automation/ha-config-automation"),
@@ -427,10 +426,10 @@ class HaPanelConfig extends SubscribeMixin(HassRouterPage) {
         tag: "ha-config-tags",
         load: () => import("./tags/ha-config-tags"),
       },
-      cloud: {
-        tag: "ha-config-cloud",
-        load: () => import("./cloud/ha-config-cloud"),
-      },
+      // cloud: {
+      //   tag: "ha-config-cloud",
+      //   load: () => import("./cloud/ha-config-cloud"),
+      // },
       devices: {
         tag: "ha-config-devices",
         load: () => import("./devices/ha-config-devices"),
